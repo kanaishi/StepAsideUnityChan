@@ -12,7 +12,7 @@ public class ItemGenerator : MonoBehaviour
     //cornPrefabを入れる
     public GameObject conePrefab;
     //スタート地点
-    private int startPos = -160;
+    private int startPos = -205;
     //ゴール地点
     private int goalPos = 120;
     //アイテムを出すx方向の範囲
@@ -32,15 +32,16 @@ public class ItemGenerator : MonoBehaviour
         this.unitychan = GameObject.Find("unitychan");
         //Debug.Log(this.unitychan.transform.position.z);
 
-        if (goalPos >= this.unitychan.transform.position.z)
+        if (goalPos - 30 > this.unitychan.transform.position.z)
         {
+            
             int i = startPos;
-   
-            if (startPos >= this.unitychan.transform.position.z)
+         
+            if (this.unitychan.transform.position.z > startPos)
             {
-                
 
-                Debug.Log("最初のＰＯＳ" + startPos);
+                i = (int)this.unitychan.transform.position.z + 45;
+                
                 //どのアイテムを出すのかをランダムに設定
                 int num = Random.Range(1, 11);
                 if (num <= 2)
@@ -76,12 +77,10 @@ public class ItemGenerator : MonoBehaviour
                             car.transform.position = new Vector3(posRange * j, car.transform.position.y, i + offsetZ);
                         }
                     }
-
-                    
                 }
                 startPos += 15;
                 Debug.Log("生成成功");
-            }
+            }         
         }
     }
 }
